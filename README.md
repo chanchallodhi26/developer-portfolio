@@ -1,8 +1,9 @@
-
-# Developer Portfolio
+# Chanchal Lodhi — Developer Portfolio
 
 A responsive personal software developer portfolio built
 with HTML, CSS, and JavaScript.
+
+**Live site:** https://chanchallodhi26.github.io/developer-portfolio/
 
 ## Overview
 
@@ -35,7 +36,7 @@ development interests, and personal projects.
 - Accessible semantic HTML
 - Keyboard navigation
 - Reduced-motion support
-- Contact profile links when configured
+- Email, LinkedIn, and GitHub contact links
 
 ## Project Structure
 
@@ -43,7 +44,6 @@ development interests, and personal projects.
 - `css/style.css` - Website styles
 - `js/main.js` - Main interactions
 - `js/projects.js` - Project data
-- `js/contact.js` - Public contact data
 - `assets/` - Images, icons, and resume
 
 ## Running Locally
@@ -55,8 +55,10 @@ development interests, and personal projects.
 
 ## Deployment
 
-GitHub Pages deployment instructions will be
-added after the initial deployment.
+The site is deployed with GitHub Pages from the
+`main` branch:
+
+https://chanchallodhi26.github.io/developer-portfolio/
 
 ## Future Improvements
 
@@ -64,7 +66,3 @@ added after the initial deployment.
 - Improve SEO and accessibility
 - Add verified project screenshots
 - Add project filtering
-
-## Project Status
-
-Portfolio under development.

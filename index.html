@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="theme-color" content="#0b1120">
-    <meta name="robots" content="index, follow">
+    <meta name="author" content="Chanchal Lodhi">
 
     <title>Chanchal Lodhi | Software Developer Portfolio</title>
     <meta name="description"
@@ -25,12 +25,28 @@
     
     <link rel="stylesheet" href="css/style.css">
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Chanchal Lodhi",
+        "url": "https://chanchallodhi26.github.io/developer-portfolio/",
+        "jobTitle": "Software Developer",
+        "email": "mailto:lodhichanchal26@gmail.com",
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Institute of Engineering, Jiwaji University"
+        },
+        "sameAs": [
+            "https://github.com/chanchallodhi26",
+            "https://www.linkedin.com/in/chanchal-lodhi"
+        ]
+    }
+    </script>
+
     <!-- Load data before the application script -->
-
     <script src="js/projects.js" defer></script>
-    <script src="js/contact.js" defer></script>
     <script src="js/main.js" defer></script>
-
 
 </head>
 
@@ -60,18 +76,20 @@
             </button>
 
 
-            <div class="nav-links" id="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
 
-                <a href="#contact" class="nav-cta">
-                    Let's Connect
-                </a>
-            </div>
+                <li>
+                    <a href="#contact" class="nav-cta">
+                        Let's Connect
+                    </a>
+                </li>
+            </ul>
 
         </nav>
     </header>
@@ -85,7 +103,7 @@
                 <div class="hero-content">
 
                     <p class="hero-eyebrow">
-                        SOFTWARE DEVELOPMENT &amp; QA AUTOMATION
+                        Software Development &amp; QA Automation
                     </p>
 
 
@@ -123,13 +141,13 @@
 
                     </div>
 
-                    <div class="hero-skills" aria-label="Featured technologies">
-                        <span>Python</span>
-                        <span>JavaScript</span>
-                        <span>FastAPI</span>
-                        <span>SQL</span>
-                        <span>Playwright</span>
-                    </div>
+                    <ul class="hero-skills" aria-label="Featured technologies">
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>FastAPI</li>
+                        <li>SQL</li>
+                        <li>Playwright</li>
+                    </ul>
                 </div>
 
                 <!-- Decorative code panel -->
@@ -190,7 +208,7 @@
 
                 <div class="section-heading">
                     <p class="section-label">
-                        01 / ABOUT ME
+                        01 / About Me
                     </p>
 
                     <h2 id="about-heading">
@@ -258,7 +276,7 @@
                             <div class="info-icon" aria-hidden="true">🎓</div>
 
                             <div>
-                                <h4>Education</h4>
+                                <h3>Education</h3>
 
                                 <p>
                                     Computer Science Engineering
@@ -279,7 +297,7 @@
                             <div class="info-icon" aria-hidden="true">💻</div>
 
                             <div>
-                                <h4>Technical Interests</h4>
+                                <h3>Technical Interests</h3>
 
                                 <p>
                                     Backend Development
@@ -296,7 +314,7 @@
                             <div class="info-icon" aria-hidden="true">🎯</div>
 
                             <div>
-                                <h4>Career Opportunities</h4>
+                                <h3>Career Opportunities</h3>
 
                                 <p>
                                     Software Developer
@@ -323,7 +341,7 @@
 
                 <div class="section-heading">
                     <p class="section-label">
-                        02 / TECHNICAL SKILLS
+                        02 / Technical Skills
                     </p>
 
                     <h2 id="skills-heading">
@@ -448,7 +466,7 @@
 
                 <div class="section-heading">
                     <p class="section-label">
-                        03 / FEATURED PROJECTS
+                        03 / Featured Projects
                     </p>
 
                     <h2 id="projects-heading">
@@ -532,7 +550,7 @@
 
                 <div class="section-heading">
                     <p class="section-label">
-                        04 / EDUCATION
+                        04 / Education
                     </p>
 
                     <h2 id="education-heading">
@@ -592,7 +610,7 @@
 
                 <div class="section-heading">
                     <p class="section-label">
-                        05 / CONTACT
+                        05 / Contact
                     </p>
 
                     <h2 id="contact-heading">
@@ -626,16 +644,42 @@
                         </p>
                     </div>
 
-                    <div class="contact-links" id="contact-links">
-                        <!-- Real links are rendered by JavaScript -->
+                    <div class="contact-links">
+
+                        <a class="contact-card" href="mailto:lodhichanchal26@gmail.com">
+                            <span class="contact-icon" aria-hidden="true">@</span>
+                            <span class="contact-card-content">
+                                <span class="contact-card-title">Email</span>
+                                <span class="contact-card-detail">lodhichanchal26@gmail.com</span>
+                            </span>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
+
+                        <a class="contact-card" href="https://www.linkedin.com/in/chanchal-lodhi"
+                            target="_blank" rel="noopener noreferrer">
+                            <span class="contact-icon" aria-hidden="true">in</span>
+                            <span class="contact-card-content">
+                                <span class="contact-card-title">LinkedIn</span>
+                                <span class="contact-card-detail">View my LinkedIn profile</span>
+                            </span>
+                            <span class="visually-hidden">(opens in a new tab)</span>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
+
+                        <a class="contact-card" href="https://github.com/chanchallodhi26"
+                            target="_blank" rel="noopener noreferrer">
+                            <span class="contact-icon" aria-hidden="true">&lt;/&gt;</span>
+                            <span class="contact-card-content">
+                                <span class="contact-card-title">GitHub</span>
+                                <span class="contact-card-detail">Explore my public repositories</span>
+                            </span>
+                            <span class="visually-hidden">(opens in a new tab)</span>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
+
                     </div>
 
                 </div>
-
-                <p class="contact-empty" id="contact-empty">
-                    Professional contact links will be added here
-                    once the details are confirmed.
-                </p>
 
             </div>
         </section>
@@ -660,15 +704,15 @@
                 </p>
             </div>
 
-            <nav class="footer-navigation" aria-label="Footer navigation">
-
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
-
+            <nav aria-label="Footer navigation">
+                <ul class="footer-navigation">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
 
             <div class="footer-bottom">

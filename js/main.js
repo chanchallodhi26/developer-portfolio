@@ -1,4 +1,3 @@
-
 // ==========================================
 // Developer Portfolio - Navigation
 // ==========================================
@@ -71,12 +70,10 @@ function handleDesktopChange(event) {
 
 desktopQuery.addEventListener("change", handleDesktopChange);
 
-console.log("Portfolio navigation initialized successfully.");
-
 
 
 // ==========================================
-// STEP 6: FEATURED PROJECTS
+// Featured projects
 // ==========================================
 
 const projectsGrid = document.getElementById("projects-grid");
@@ -85,35 +82,11 @@ const projectTemplate = document.getElementById(
     "project-card-template"
 );
 
-// Accept only valid public HTTPS links.
+// Accept only valid HTTPS links.
 function getPublicUrl(value) {
-    if (typeof value !== "string" || !value.trim()) {
-        return null;
-    }
-
     try {
         const url = new URL(value);
-
-        if (url.protocol !== "https:") {
-            return null;
-        }
-
-        if (url.username || url.password) {
-            return null;
-        }
-
-        if (
-            url.hostname === "localhost" ||
-            url.hostname.endsWith(".localhost") ||
-            url.hostname.endsWith(".local") ||
-            url.hostname.endsWith(".internal") ||
-            /^(?:127|10|192\.168)\./.test(url.hostname) ||
-            /^172\.(?:1[6-9]|2\d|3[01])\./.test(url.hostname)
-        ) {
-            return null;
-        }
-
-        return url.href;
+        return url.protocol === "https:" ? url.href : null;
     } catch {
         return null;
     }
@@ -129,7 +102,15 @@ function createProjectLink(label, url) {
 
     const link = document.createElement("a");
 
-    link.textContent = label + " ↗";
+    const hint = document.createElement("span");
+    hint.className = "visually-hidden";
+    hint.textContent = " (opens in a new tab)";
+
+    const arrow = document.createElement("span");
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = " ↗";
+
+    link.append(label, hint, arrow);
     link.href = validUrl;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
@@ -214,15 +195,20 @@ function createProjectCard(project) {
     ) {
         const image = document.createElement("img");
 
+        const placeholder = imageWrapper.firstElementChild;
+
         image.src = project.screenshot;
         image.alt = project.title + " project screenshot";
         image.loading = "lazy";
+        image.width = 1280;
+        image.height = 720;
 
-        image.addEventListener("load", () => {
-            imageWrapper.replaceChildren(image);
+        // If the file is missing, restore the honest placeholder.
+        image.addEventListener("error", () => {
+            image.replaceWith(placeholder);
         });
 
-        // If the file is missing, keep the honest placeholder.
+        imageWrapper.replaceChildren(image);
     }
 
     // Add only supplied, valid external URLs.
@@ -294,11 +280,6 @@ function renderProjects() {
     });
 
     projectsEmpty.hidden = renderedCount > 0;
-
-    console.log(
-        "Featured projects rendered:",
-        renderedCount
-    );
 }
 
 renderProjects();
@@ -306,149 +287,8 @@ renderProjects();
 
 
 // ==========================================
-// STEP 8: CONTACT LINKS AND FOOTER
+// Footer
 // ==========================================
-
-const contactLinks = document.getElementById("contact-links");
-const contactEmpty = document.getElementById("contact-empty");
-
-// Validate email addresses for the mailto link.
-function isValidEmail(email) {
-    return (
-        typeof email === "string" &&
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-        !/[\r\n?#]/.test(email)
-    );
-}
-
-// Accept only HTTPS URLs for the expected profile host.
-function getProfileUrl(value, allowedHosts) {
-    if (typeof value !== "string" || !value.trim()) {
-        return null;
-    }
-
-    try {
-        const url = new URL(value.trim());
-
-        const host = url.hostname.toLowerCase();
-
-        if (
-            url.protocol !== "https:" ||
-            url.username ||
-            url.password ||
-            !allowedHosts.includes(host)
-        ) {
-            return null;
-        }
-
-        return url.href;
-    } catch {
-        return null;
-    }
-}
-
-// Reusable contact-card creator.
-function createContactCard(label, detail, url, symbol) {
-    const link = document.createElement("a");
-    link.className = "contact-card";
-    link.href = url;
-
-    if (!url.startsWith("mailto:")) {
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-    }
-
-    const icon = document.createElement("span");
-    icon.className = "contact-icon";
-    icon.setAttribute("aria-hidden", "true");
-    icon.textContent = symbol;
-
-    const content = document.createElement("span");
-    content.className = "contact-card-content";
-
-    const title = document.createElement("span");
-    title.className = "contact-card-title";
-    title.textContent = label;
-
-    const description = document.createElement("span");
-    description.className = "contact-card-detail";
-    description.textContent = detail;
-
-    const arrow = document.createElement("span");
-    arrow.className = "contact-arrow";
-    arrow.setAttribute("aria-hidden", "true");
-    arrow.textContent = "↗";
-
-    content.append(title, description);
-    link.append(icon, content, arrow);
-
-    return link;
-}
-
-function renderContactLinks() {
-    if (!contactLinks || !contactEmpty) {
-        console.error("Contact section elements are missing.");
-        return;
-    }
-
-    if (typeof portfolioContact === "undefined") {
-        console.error("Contact configuration is missing.");
-        return;
-    }
-
-    contactLinks.replaceChildren();
-
-    const email = portfolioContact.email?.trim();
-
-    if (isValidEmail(email)) {
-        contactLinks.appendChild(
-            createContactCard(
-                "Email",
-                email,
-                "mailto:" + email,
-                "@"
-            )
-        );
-    }
-
-    const linkedinUrl = getProfileUrl(
-        portfolioContact.linkedin,
-        ["linkedin.com", "www.linkedin.com"]
-    );
-
-    if (linkedinUrl) {
-        contactLinks.appendChild(
-            createContactCard(
-                "LinkedIn",
-                "View my LinkedIn profile",
-                linkedinUrl,
-                "in"
-            )
-        );
-    }
-
-    const githubUrl = getProfileUrl(
-        portfolioContact.github,
-        ["github.com", "www.github.com"]
-    );
-
-    if (githubUrl) {
-        contactLinks.appendChild(
-            createContactCard(
-                "GitHub",
-                "Explore my public repositories",
-                githubUrl,
-                "</>"
-            )
-        );
-    }
-
-    const linkCount = contactLinks.children.length;
-
-    contactEmpty.hidden = linkCount > 0;
-
-    console.log("Contact methods displayed:", linkCount);
-}
 
 // Automatically update the copyright year.
 function updateFooterYear() {
@@ -461,5 +301,4 @@ function updateFooterYear() {
     }
 }
 
-renderContactLinks();
 updateFooterYear();
